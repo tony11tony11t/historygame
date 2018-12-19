@@ -1,0 +1,43 @@
+<!--動畫時間軸-->
+
+<!--卡牌載入(5s)-1s-爬山(3s)-1.5s-墨水動畫(4s)            -->   
+<!-------------------------------------------------------------------------------------->
+<!--          雲散開(3s)---logo(2s)--------字出現(2s)    -->          
+
+<html>
+    <head>
+          <link rel="stylesheet" href="css/index.css">
+          <script src="js/index.js"></script>
+    </head>
+    <body>
+        <hgroup><img src="image/logo.png"></hgroup>
+        <nav>
+            <ul>
+                <li class="menu"><img src="index_image/start.png" class="start">
+                    <a href="startgame.html"><img src="index_image/start_c.png"></a>
+                    <div class="mask" data-item="1"></div>
+                </li>
+                <li class="menu"><img src="index_image/gamecontent.png" class="start">
+                    <a href="intro-bg.html"><img src="index_image/gamecontent_c.png"></a>
+                    <div class="mask"  data-item="2"></div>
+                </li>
+                <li class="menu"><img src="index_image/QA.png" class="start">
+                    <a href="QA.html"><img src="index_image/QA_c.png"></a>
+                    <div class="mask"  data-item="3"></div>
+                </li>
+                <li class="menu"><img src="index_image/aboutus.png" class="start">
+                    <a href="about-email.html"><img src="index_image/aboutus_c.png"></a>
+                    <div class="mask"  data-item="4"></div>
+                </li>
+            </ul>
+        </nav>
+        <div id="clouds"></div>
+        <script>
+        var clouds=document.getElementById("clouds");
+        addcloud(clouds);
+        var menu=document.getElementsByClassName("menu");
+        usemenu(menu);
+        </script>
+    </body>
+     <footer><p><small>卡牌戰國版權所有&copy;2018 建議解析度:1920X1080</small></p></footer>
+</html>

@@ -1,0 +1,176 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-image: url("..//index_image/index_bg.png");
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+    background-position: 0px 100%;
+    animation-delay: 6s;
+    animation-name: start;
+    animation-duration:3s;
+    animation-timing-function:ease-in-out;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}
+@keyframes start{
+    from{
+        background-position: 0px 100%;
+    }
+    to{
+        background-position: 0px 0%;
+    }
+}
+hgroup>img{
+    width: 25vw;
+    opacity: 0;
+    margin: 15px;
+    animation-name: logo;
+    animation-delay: 9s;
+    animation-duration:2s;
+    animation-fill-mode: forwards;
+}
+@keyframes logo{
+   from{
+       opacity: 0;
+    } 
+    to{
+        opacity: 1;
+    }
+}
+ul{
+    text-align: right;
+    margin-top: 15vh;
+    margin-right: 13vw;
+}
+li{
+   display: inline-block;
+    width: 15%;
+}
+li>img{
+    width: 40%;
+    position: relative;
+    z-index: 100;
+    
+}
+.start{
+    opacity: 0;
+    animation-name: menu;
+    animation-delay:13.5s;
+    animation-timing-function: ease-in;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+}
+@keyframes menu{
+    from{
+      opacity: 0;  
+    }
+    to{
+        opacity: 1;
+    }
+}
+li>a>img{
+    width: 40%;
+    position: relative;
+    z-index: 100;
+    display: none;
+}
+
+.mask{
+    position: relative;
+    z-index: 1;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    top:-50vh;
+    left:2vw;
+    border-radius: 999em;
+    animation-name: ink;
+    animation-timing-function: cubic-bezier(0, 1.07, 0.74, 1);
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+}
+@keyframes ink{
+    from{
+        width: 0%;
+        height: 0%;
+        padding: 100px;
+        opacity: 0;
+    }
+    to{
+        width: 90%;
+        height: 25%;
+        padding: 0%;
+        opacity: 1;
+    }
+}
+.mask[data-item="1"]{
+    animation-delay: 10.5s;
+    background-image: url(../index_image/itemicon_1.png);
+}
+.mask[data-item="2"]{
+    animation-delay: 11.1s;
+    background-image: url(../index_image/itemicon_2.png);
+}
+.mask[data-item="3"]{
+    animation-delay: 11.7s;
+    background-image: url(../index_image/itemicon_3.png);
+}
+.mask[data-item="4"]{
+    animation-delay: 12.3s;
+    background-image: url(../index_image/itemicon_4.png);
+}
+
+#clouds>img{
+   position: absolute;
+   left: 0px;
+   top:0px;
+   height: 1000px; 
+   width:1000px; 
+   z-index: 1000;
+   animation-delay: 5s;
+   animation-timing-function:linear;
+   animation-duration:3s;
+   animation-fill-mode: forwards;
+}
+.clouds_top{
+    animation-name: cloudspread_top;
+}
+.clouds_down{
+    animation-name: cloudspread_down;
+}
+.clouds_right{
+    animation-name: cloudspread_right;
+}
+.clouds_left{
+    animation-name: cloudspread_left;
+}
+@keyframes cloudspread_top{
+    to{
+        top:-1000px;
+    }
+}
+@keyframes cloudspread_down{
+    to{
+        top:100%;
+    }
+}
+@keyframes cloudspread_right{
+    to{
+        left:100%;
+    }
+}
+@keyframes cloudspread_left{
+    to{
+        left:-1000px;
+    }
+}
+footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
