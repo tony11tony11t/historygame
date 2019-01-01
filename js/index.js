@@ -41,5 +41,20 @@ function usemenu(menu){
             }); 
         }
         },14500);
-}    
+}
+function loading(loadP){
+       var load=setInterval(function(){
+           if(loadP.innerHTML=="載入中..."){
+                loadP.innerHTML="載入中"
+            }
+            else{
+                loadP.innerHTML+="."
+            } 
+        },200);
+        setTimeout(function(){
+            clearInterval(load);
+            loadP.innerHTML="載入完畢";
+            loadP.classList.add("index-load-p-end");
+        },4000)
+}  
         

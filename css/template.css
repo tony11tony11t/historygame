@@ -10,6 +10,7 @@ body{
     animation-duration: 30s;
     animation-timing-function: linear;
     background-size: 50% 100%;
+    overflow: hidden;
 }
 @keyframes bg{
     from{

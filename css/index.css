@@ -128,7 +128,7 @@ li>a>img{
    top:0px;
    height: 1000px; 
    width:1000px; 
-   z-index: 1000;
+   z-index: 100;
    animation-delay: 5s;
    animation-timing-function:linear;
    animation-duration:3s;
@@ -173,4 +173,65 @@ footer{
     width: 100%;
     background-color: black;
     color: white;
+}
+.index-load{
+    position: fixed;
+    top:40%;
+    left:47%;
+    width: 4vw;
+    height: 6vw;
+    z-index: 1000;
+}
+.index-noload{
+    background-image: url(../image/cardback_black.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    animation-name: load-dissappear;
+    animation-delay: 4s;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+}
+@keyframes load-dissappear{
+    from{
+        opacity: 1; 
+    }
+    to{
+        opacity: 0;
+    }
+}
+.index-nowload{
+    background-image: url(../image/cardback.png);
+    background-repeat: no-repeat;
+    background-size: 4vw 6vw;
+    animation-name: load;
+    animation-duration:5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(1, -0.01, 0.7, 0.67);
+}
+@keyframes load{
+    0%{
+       height: 0vw; 
+    }
+    80%{
+       height: 6vw;
+       opacity: 1; 
+    }
+    100%{
+        opacity: 0;
+    }
+    
+}
+#index-load-p{
+    position: fixed;
+    top:55%;
+    left:46.5%;
+    font-size:1.2vw;
+    z-index: 1000;
+    font-weight: bold;
+}
+.index-load-p-end{
+    animation-name: load-dissappear;
+    animation-delay: 0.5s;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
 }

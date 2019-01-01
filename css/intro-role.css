@@ -69,3 +69,14 @@ img[alt="G"]{
   width:24.8%;
   z-index: 10;
 }
+.map-visible{
+    visibility: visible;
+}
+.gamerole-roleclo{
+    position: relative;
+    left:25%;
+}
+.gamerole-roleclo>img{
+    margin-top: 15vh;
+    width: 20vw;
+}

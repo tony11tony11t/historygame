@@ -1,0 +1,283 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/game.css">
+    </head>
+    <body>
+        <div class="enemycard">
+        <img src="image/cardback.png" class="game-nofightcard enemycardseat">
+        <img src="image/cardback.png" class="game-nofightcard enemycardseat">
+        <div class="card enemycardseat">
+            <img src="image/game/skillbtn.png" class="game-skillbtn">
+            <img src="image/cardback.png" class="game-fightcard">
+            <div class="game-fightcard-information">
+                <p>名稱:</p>
+                <p>攻擊力:</p>
+                <div class="game-fightcard-blood-bg"></div>
+                <div class="game-fightcard-blood-deducted"></div>
+                <div class="game-fightcard-blood"></div>
+                <p class="game-fightcard-bloodnum">1000</p>
+            </div>
+        </div>
+        <div class="card enemycardseat">
+            <img src="image/game/skillbtn.png" class="game-skillbtn">
+            <img src="image/cardback.png" class="game-fightcard">
+            <div class="game-fightcard-information">
+                <p>名稱:</p>
+                <p>攻擊力:</p>
+                <div class="game-fightcard-blood-bg"></div>
+                <div class="game-fightcard-blood-deducted"></div>
+                <div class="game-fightcard-blood"></div>
+                <p class="game-fightcard-bloodnum">1000</p>
+            </div>
+        </div>
+        <div class="card enemycardseat">
+            <img src="image/game/skillbtn.png" class="game-skillbtn">
+            <img src="image/cardback.png" class="game-fightcard">
+            <div class="game-fightcard-information">
+                <p>名稱:</p>
+                <p>攻擊力:</p>
+                <div class="game-fightcard-blood-bg"></div>
+                <div class="game-fightcard-blood-deducted"></div>
+                <div class="game-fightcard-blood"></div>
+                <p class="game-fightcard-bloodnum">1000</p>
+            </div>
+        </div>
+        <img src="image/logo.png" class="game-logo">
+        <p class="game-roundtime">Round 1</p>
+        </div>
+        <div class="mycard">
+        <div class="game-teacher"></div>
+        <div class="card mycardseat" data-seat="1">
+            <img src="image/game/skillbtn.png" class="game-skillbtn">
+            <img src="image/cardback.png" class="game-fightcard">
+            <div class="game-fightcard-information">
+                <p>名稱:</p>
+                <p>攻擊力:</p>
+                <div class="game-fightcard-blood-bg"></div>
+                <div class="game-fightcard-blood-deducted"></div>
+                <div class="game-fightcard-blood"></div>
+                <p class="game-fightcard-bloodnum">1000</p>
+            </div>
+        </div>
+        <div class="card mycardseat"  data-seat="2">
+            <img src="image/game/skillbtn.png" class="game-skillbtn">
+            <img src="image/cardback.png" class="game-fightcard">
+            <div class="game-fightcard-information">
+                <p>名稱:</p>
+                <p>攻擊力:</p>
+                <div class="game-fightcard-blood-bg"></div>
+                <div class="game-fightcard-blood-deducted"></div>
+                <div class="game-fightcard-blood"></div>
+                <p class="game-fightcard-bloodnum">1000</p>
+            </div>
+        </div>
+        <div class="card mycardseat"  data-seat="3">
+            <img src="image/game/skillbtn.png" class="game-skillbtn">
+            <img src="image/cardback.png" class="game-fightcard">
+            <div class="game-fightcard-information">
+                <p>名稱:</p>
+                <p>攻擊力:</p>
+                <div class="game-fightcard-blood-bg"></div>
+                <div class="game-fightcard-blood-deducted"></div>
+                <div class="game-fightcard-blood"></div>
+                <p class="game-fightcard-bloodnum">1000</p>
+            </div>
+        </div>
+        <img src="image/cardback.png" class="game-nofightcard mycardseat">
+        <img src="image/cardback.png" class="game-nofightcard mycardseat">
+        
+        </div>
+    </body>
+    <script src="card.json" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var roundtime=0;
+        var mycardseat=document.getElementsByClassName("mycardseat");
+        var enemycardseat=document.getElementsByClassName("enemycardseat");
+        var country=localStorage.getItem("country");
+        var fightcard=document.getElementsByClassName("game-fightcard");
+        var skillbtn=document.getElementsByClassName("game-skillbtn");
+        for(var i=1;i<4;i++){
+            var role=localStorage.getItem(i);
+            mycardseat[i-1].childNodes[3].setAttribute("src","image/game/"+country+"/"+role+".png");
+            var mycardinformation=mycardseat[i-1].childNodes[5];
+            if(country=="A"){
+                mycardinformation.childNodes[1].innerHTML="名稱:"+card[6+parseInt(role)-1]["name"];
+                mycardinformation.childNodes[3].innerHTML="攻擊力:"+card[6+parseInt(role)-1]["attack"];
+                mycardinformation.childNodes[11].innerHTML=card[6+parseInt(role)-1]["HP"];
+            }
+            else if(country=="B"){
+                mycardinformation.childNodes[1].innerHTML="名稱:"+card[6+parseInt(role)-1]["name"];
+                mycardinformation.childNodes[3].innerHTML="攻擊力:"+card[6+parseInt(role)-1]["attack"];
+                mycardinformation.childNodes[11].innerHTML=card[6+parseInt(role)-1]["HP"];
+            }
+        }
+        for(var i=4;i<6;i++){
+            var role=localStorage.getItem(i);
+            mycardseat[i-1].setAttribute("src","image/game/"+country+"/"+role+".png");
+        }
+        intro();
+        
+        /*增加對手*/
+        for(var i=0;i<2;i++){
+            enemycardseat[i].setAttribute("src","image/game/A/"+(1+i)+".png");
+        }
+        for(var i=2;i<5;i++){
+            enemycardseat[i].childNodes[3].setAttribute("src","image/game/A/"+(1+i)+".png");
+            var enemycardinformation=enemycardseat[i].childNodes[5];
+            enemycardinformation.childNodes[1].innerHTML="名稱:"+card[i]["name"];
+            enemycardinformation.childNodes[3].innerHTML="攻擊力:"+card[i]["attack"];
+            enemycardinformation.childNodes[11].innerHTML=card[i]["HP"];
+        }
+        
+        
+        for(var i=3;i<6;i++){
+            fightcard[i].addEventListener("click",function(){
+               for(var i=3;i<6;i++){
+                   if(skillbtn[i].getAttribute("src")=="image/game/skillbtnhover.png"){
+                       skillbtn[i].setAttribute("src","image/game/skillbtn.png");
+                       break;
+                   }
+                   if(fightcard[i].classList.contains("game-fightcard-catch")){
+                       fightcard[i].classList.remove("game-fightcard-catch");
+                       break;
+                   }
+               }
+               this.classList.add("game-fightcard-catch");
+               var teachtext=document.getElementsByClassName("game-teacher")[0];
+                console.log(teachtext.childNodes);
+                teachtext.childNodes[0].classList.remove("game-teachtext-now");
+                teachtext.childNodes[0].classList.add("game-teachtext-not");
+                teachtext.childNodes[1].classList.remove("game-teachtext-not");
+                teachtext.childNodes[1].classList.add("game-teachtext-now");
+            });
+            
+            
+            skillbtn[i].addEventListener("click",function(){
+               for(var i=3;i<6;i++){
+                   if(skillbtn[i].getAttribute("src")=="image/game/skillbtnhover.png"){
+                       skillbtn[i].setAttribute("src","image/game/skillbtn.png");
+                       break;
+                   }
+                   if(fightcard[i].classList.contains("game-fightcard-catch")){
+                       fightcard[i].classList.remove("game-fightcard-catch");
+                       break;
+                   }
+               }
+               this.setAttribute("src","image/game/skillbtnhover.png");
+               var teachtext=document.getElementsByClassName("game-teacher")[0];
+                console.log(teachtext.childNodes);
+                teachtext.childNodes[0].classList.remove("game-teachtext-now");
+                teachtext.childNodes[0].classList.add("game-teachtext-not");
+                teachtext.childNodes[1].classList.remove("game-teachtext-not");
+                teachtext.childNodes[1].classList.add("game-teachtext-now");
+            });
+        }
+        
+        for(var i=0;i<3;i++){
+            fightcard[i].addEventListener("click",function(){
+                var flagcatch=false;
+                for(var j=3;j<6;j++){
+                    if(fightcard[j].classList.contains("game-fightcard-catch")){
+                        flagcatch=true;
+                        break;
+                    }
+                }
+                if(flagcatch){
+                    for(var j=0;j<3;j++){
+                        if(fightcard[j].classList.contains("game-enemycard-catch")){
+                           fightcard[j].classList.remove("game-enemycard-catch");
+                        }
+                    }
+                    this.classList.add("game-enemycard-catch");
+                    document.getElementsByClassName("game-okbtn")[0].classList.add("game-okbtn-ready");
+                    var teachtext=document.getElementsByClassName("game-teacher")[0];
+                    teachtext.childNodes[1].classList.remove("game-teachtext-now");
+                    teachtext.childNodes[1].classList.add("game-teachtext-not");
+                    
+                }
+                
+            })
+        }
+    
+        function intro(){
+            document.getElementsByClassName("game-teacher")[0].innerHTML="";
+            var p1=document.createElement("p");
+            p1.innerHTML="1.點擊自身卡牌或技能攻擊";
+            p1.setAttribute("class","game-teachtext-now");
+            document.getElementsByClassName("game-teacher")[0].appendChild(p1);
+            var p2=document.createElement("p");
+            p2.innerHTML="2.選擇對方腳色";
+            p2.setAttribute("class","game-teachtext-not");
+            document.getElementsByClassName("game-teacher")[0].appendChild(p2);
+            var p3=document.createElement("p");
+            p3.innerHTML="確認";
+            p3.setAttribute("class","game-okbtn");
+            document.getElementsByClassName("game-teacher")[0].appendChild(p3);
+            
+            document.getElementsByClassName("game-okbtn")[0].addEventListener("click",function(){
+            if(this.classList.contains("game-okbtn-ready")){
+                console.log("come");
+                var enemy=document.getElementsByClassName("game-enemycard-catch")[0];
+                var mysoldier=document.getElementsByClassName("game-fightcard-catch")[0];
+                var hurt=document.createElement("div");
+                hurt.setAttribute("class","game-gethurt");
+                enemy.parentNode.appendChild(hurt);
+                
+                var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                var mysoldierattack=mysoldier.parentElement.childNodes[5].childNodes[3];
+                
+                enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+                
+                enemy.classList.remove("game-enemycard-catch");
+                mysoldier.classList.remove("game-fightcard-catch");
+                setTimeout(enemyturn,1000);
+                
+            }
+        });
+            roundtime++;
+            document.getElementsByClassName("game-roundtime")[0].innerHTML="Round"+roundtime;
+        }
+        function enemyturn(){
+            document.getElementsByClassName("game-teacher")[0].innerHTML="";
+            var p=document.createElement("p");
+            p.innerHTML="敵人<br>回合";
+            p.setAttribute("class","game-enemyturn-now");
+            document.getElementsByClassName("game-teacher")[0].appendChild(p);
+            
+            setTimeout(function(){
+                var enemy=parseInt(Math.random()*10);
+                console.log(enemy%3);
+                fightcard[enemy%3].classList.add("game-fightcard-catch");
+            },500)
+            setTimeout(function(){
+                var mysoldier=parseInt(Math.random()*10);
+                console.log(mysoldier%3+3);
+                fightcard[mysoldier%3+3].classList.add("game-enemycard-catch");
+            },1500);
+            setTimeout(function(){
+                var enemy=document.getElementsByClassName("game-enemycard-catch")[0];
+                var mysoldier=document.getElementsByClassName("game-fightcard-catch")[0];
+                var hurt=document.createElement("div");
+                hurt.setAttribute("class","game-gethurt");
+                enemy.parentNode.appendChild(hurt);
+                
+                var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                var mysoldierattack=mysoldier.parentElement.childNodes[5].childNodes[3];
+                
+                enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+                
+                enemy.classList.remove("game-enemycard-catch");
+                mysoldier.classList.remove("game-fightcard-catch");
+            
+            },2000);
+            setTimeout(function(){
+                var gethurt=document.getElementsByClassName("game-gethurt");           
+                gethurt[0].parentNode.removeChild(gethurt[0]);
+                gethurt[0].parentNode.removeChild(gethurt[0]);
+                intro();
+            },2500);
+        }
+        
+    </script>
+      
+</html>

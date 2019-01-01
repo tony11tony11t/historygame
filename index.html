@@ -32,11 +32,17 @@
             </ul>
         </nav>
         <div id="clouds"></div>
+        <div class="index-load index-noload"></div>
+        <div class="index-load index-nowload"></div>
+        <p id="index-load-p">載入中...</p>
         <script>
         var clouds=document.getElementById("clouds");
         addcloud(clouds);
         var menu=document.getElementsByClassName("menu");
         usemenu(menu);
+        var loadP=document.getElementById("index-load-p");
+        loading(loadP);
+        
         </script>
     </body>
      <footer><p><small>卡牌戰國版權所有&copy;2018 建議解析度:1920X1080</small></p></footer>

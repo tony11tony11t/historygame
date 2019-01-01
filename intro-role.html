@@ -45,7 +45,21 @@
             <img src="image/map/map07-gray.png" alt="G" class="gamerole-graymap"><!--韓-->
             <img src="image/map/map07.png" alt="G" class="gamerole-realmap"><!--韓-->
         </div>
+        <div class="gamerole-roleclo">
+        <img src="image/roletips.png">
+        </div>
         
         <footer><p><small>卡牌戰國版權所有&copy;2018 建議解析度:1920X1080</small></p></footer>
+        <script>
+           var realmap=document.getElementsByClassName("gamerole-realmap");
+            for(var i=0;i<realmap.length;i++){
+                realmap[i].addEventListener("click",function(){
+                    for(var i=0;i<realmap.length;i++){
+                      realmap[i].classList.remove("map-visible");
+                    }
+                    this.classList.add("map-visible");
+                })
+            }
+        </script>
     </body>
 </html>
