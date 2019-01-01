@@ -4,26 +4,27 @@ var card=[
         "country":"秦",
         "HP":1500,
         "attack":750,
-        "attackSkill":function(enemy){
-            enemy.HP-=1000;
-        },
+        "attackSkill":function(){},
         "passiveSkill":[
             function(seat){
-                var attack=parseInt(card[0]["attack"]);
+                mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[0]["attack"];
+                var attack=parseInt(mycardseat[seat].childNodes[5].childNodes[3].innerHTML.substr(4,6));
                 for(var i=0;i<3;i++){
                     if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:王翦"){
                         mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
                        return;
                     }
                 }
-                mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+attack;
             },
             function(){
             }
         ],
         "type":"武將",
         "img":"image/game/A/1.png",
-        "dead":function(){}
+        "dead":function(){},
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"王翦",
@@ -33,36 +34,41 @@ var card=[
         "attackSkill":function(){},
         "passiveSkill":[
              function(seat){
-                var attack=parseInt(card[1]["attack"]);
+                mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[1]["attack"];
+                var attack=parseInt(mycardseat[seat].childNodes[5].childNodes[3].innerHTML.substr(4,6));
                 for(var i=0;i<3;i++){
                     if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:白起"){
                         mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
-                        return;
+                       return;
                     }
                 }
-                 mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+attack;
             },
             function(){}
         ],
         "type":"武將",
         "img":"image/game/A/2.png",
-        "dead":function(){}
+        "dead":function(){},
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"秦穆公",
         "country":"秦",
         "HP":3000,
-        "attack":3000,
+        "attack":300,
         "attackSkill":function(){},
         "passiveSkill":[
             function(){
                 for(var i=0;i<3;i++){
                     if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:張儀"){
-                        var attack=parseInt(card[3]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[3]["attack"];
+                        var attack=parseInt(mycardseat[i].childNodes[5].childNodes[3].innerHTML.substr(4,6));
                         mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
                     }
                     if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:秦緩"){
-                        var attack=parseInt(card[4]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[4]["attack"];
+                        var attack=parseInt(mycardseat[i].childNodes[5].childNodes[3].innerHTML.substr(4,6));
                         mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
                     }
                 }
@@ -74,14 +80,15 @@ var card=[
         "dead":function(){
             for(var i=0;i<3;i++){
                 if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:張儀"){
-                    var attack=parseInt(card[3]["attack"]);
-                    mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                    mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[3]["attack"];
                 }
                 if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:秦緩"){
-                    var attack=parseInt(card[4]["attack"]);
-                    mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                    mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[4]["attack"];
                 }
             }
+        },
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
         }
     },
     {
@@ -91,32 +98,44 @@ var card=[
         "attack":3000,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(seat){
-               
-            },
+            function(){},
             function(){}
         ],
         "type":"文官",
         "img":"image/game/A/4.png",
-        "dead":function(){}
+        "dead":function(){},
+        "attacked":function(enemyblood, mysoldierattack){
+            var rand=Math.random()*10;
+            if(mysoldierattack.parentNode.childNodes[1].innerHTML!="名稱:養由基"){
+                if(rand>=2){
+                    enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+                }
+            }
+            
+        }
     },
     {
         "name":"秦緩",
         "country":"秦",
         "HP":1800,
-        "attack":2000,
+        "attack":200,
         "attackSkill":function(){},
         "passiveSkill":[
             function(seat){
-                
-                
-                
             },
             function(){}
         ],
         "type":"文官",
         "img":"image/game/A/5.png",
-        "dead":function(){}
+        "dead":function(){
+            for(var i=0;i<3;i++){
+                var blood=parseInt(mycardseat[i].childNodes[5].childNodes[11].innerHTML);
+                mycardseat[i].childNodes[5].childNodes[11].innerHTML=blood+200;
+            }
+        },
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"嬴政",
@@ -125,12 +144,30 @@ var card=[
         "attack":500,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(){
+                for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:秦穆公"){
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[2]["attack"];
+                        var attack=parseInt(mycardseat[i].childNodes[5].childNodes[3].innerHTML.substr(4,6));
+                        console.log(mycardseat[i].childNodes[5].childNodes[3].innerHTML);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack-100);
+                    }
+                }
+            },
             function(){}
         ],
         "type":"王者",
         "img":"image/game/A/6.png",
-        "dead":function(){}
+        "dead":function(){
+             for(var i=0;i<3;i++){
+                if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:秦穆公"){
+                   mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+card[2]["attack"];
+                }
+            }
+        },
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"伍子胥",
@@ -139,12 +176,23 @@ var card=[
         "attack":400,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(seat){
+                if(parseInt(mycardseat[seat].childNodes[5].childNodes[11].innerHTML)<=parseInt(card[6]["HP"]/2)){
+                    mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[6]["attack"])*2);
+                }
+                else{
+                    
+                    mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+parseInt(card[6]["attack"]);
+                }
+            },
             function(){}
         ],
         "type":"武將",
         "img":"image/game/B/1.png",
-        "dead":function(){}
+        "dead":function(){},
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"黃歇",
@@ -153,12 +201,41 @@ var card=[
         "attack":300,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(){
+                 for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:黃歇"){
+                        var attack=parseInt(card[7]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                    }
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:屈原"){
+                        var attack=parseInt(card[8]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                    }
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:孫叔敖"){
+                        var attack=parseInt(card[11]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                    }
+                }
+            },
             function(){}
         ],
         "type":"文官",
         "img":"image/game/B/2.png",
-        "dead":function(){}
+        "dead":function(){
+            for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:屈原"){
+                        var attack=parseInt(card[8]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                    }
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:孫叔敖"){
+                        var attack=parseInt(card[11]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                    }
+                }
+        },
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"屈原",
@@ -167,12 +244,20 @@ var card=[
         "attack":200,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(seat){
+                if(roundtime!=1){
+                var blood=parseInt(mycardseat[seat].childNodes[5].childNodes[11].innerHTML);
+                mycardseat[seat].childNodes[5].childNodes[11].innerHTML=blood+(card[8]["HP"]/10);
+                }
+            },
             function(){}
         ],
         "type":"文官",
         "img":"image/game/B/3.png",
-        "dead":function(){}
+        "dead":function(){},
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"吳起",
@@ -186,7 +271,16 @@ var card=[
         ],
         "type":"武將",
         "img":"image/game/B/4.png",
-        "dead":function(){}
+        "dead":function(){},
+        "attacked":function(enemyblood,mysoldierattack){
+            var rand=Math.random()*10;
+            if(mysoldierattack.parentNode.childNodes[1].innerHTML!="名稱:養由基"){
+                if(rand>=4){
+                    enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+                }
+            }
+            
+        }
     },
     {
         "name":"養由基",
@@ -200,7 +294,10 @@ var card=[
         ],
         "type":"武將",
         "img":"image/game/B/5.png",
-        "dead":function(){}
+        "dead":function(){},
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     {
         "name":"孫叔敖",
@@ -209,12 +306,41 @@ var card=[
         "attack":300,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(){
+                for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:黃歇"){
+                        var attack=parseInt(card[7]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+150);
+                    }
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:屈原"){
+                        var attack=parseInt(card[8]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+150);
+                    }
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:孫叔敖"){
+                        var attack=parseInt(card[11]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+150);
+                    }
+                }
+            },
             function(){}
         ],
         "type":"文官",
         "img":"image/game/B/6.png",
-        "dead":function(){}
+        "dead":function(){
+            for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:屈原"){
+                        var attack=parseInt(card[8]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                    }
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:孫叔敖"){
+                        var attack=parseInt(card[11]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                    }
+                }
+        },
+        "attacked":function(enemyblood, mysoldierattack){
+            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+        }
     },
     
     

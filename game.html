@@ -8,38 +8,38 @@
         <img src="image/cardback.png" class="game-nofightcard enemycardseat">
         <div class="card enemycardseat">
             <img src="image/game/skillbtn.png" class="game-skillbtn">
-            <img src="image/cardback.png" class="game-fightcard">
+            <img src="image/cardback.png" class="game-fightcard" data-card="1">
             <div class="game-fightcard-information">
                 <p>名稱:</p>
                 <p>攻擊力:</p>
                 <div class="game-fightcard-blood-bg"></div>
                 <div class="game-fightcard-blood-deducted"></div>
                 <div class="game-fightcard-blood"></div>
-                <p class="game-fightcard-bloodnum">1000</p>
+                <p class="game-fightcard-bloodnum">1000</p><div class="game-people-tips"></div>
             </div>
         </div>
         <div class="card enemycardseat">
             <img src="image/game/skillbtn.png" class="game-skillbtn">
-            <img src="image/cardback.png" class="game-fightcard">
+            <img src="image/cardback.png" class="game-fightcard" data-card="2">
             <div class="game-fightcard-information">
                 <p>名稱:</p>
                 <p>攻擊力:</p>
                 <div class="game-fightcard-blood-bg"></div>
                 <div class="game-fightcard-blood-deducted"></div>
                 <div class="game-fightcard-blood"></div>
-                <p class="game-fightcard-bloodnum">1000</p>
+                <p class="game-fightcard-bloodnum">1000</p><div class="game-people-tips"></div>
             </div>
         </div>
         <div class="card enemycardseat">
             <img src="image/game/skillbtn.png" class="game-skillbtn">
-            <img src="image/cardback.png" class="game-fightcard">
+            <img src="image/cardback.png" class="game-fightcard" data-card="3">
             <div class="game-fightcard-information">
                 <p>名稱:</p>
                 <p>攻擊力:</p>
                 <div class="game-fightcard-blood-bg"></div>
                 <div class="game-fightcard-blood-deducted"></div>
                 <div class="game-fightcard-blood"></div>
-                <p class="game-fightcard-bloodnum">1000</p>
+                <p class="game-fightcard-bloodnum">1000</p><div class="game-people-tips"></div>
             </div>
         </div>
         <img src="image/logo.png" class="game-logo">
@@ -49,38 +49,38 @@
         <div class="game-teacher"></div>
         <div class="card mycardseat" data-seat="1">
             <img src="image/game/skillbtn.png" class="game-skillbtn">
-            <img src="image/cardback.png" class="game-fightcard">
+            <img src="image/cardback.png" class="game-fightcard" data-card="4">
             <div class="game-fightcard-information">
                 <p>名稱:</p>
                 <p>攻擊力:</p>
                 <div class="game-fightcard-blood-bg"></div>
                 <div class="game-fightcard-blood-deducted"></div>
                 <div class="game-fightcard-blood"></div>
-                <p class="game-fightcard-bloodnum">1000</p>
+                <p class="game-fightcard-bloodnum">1000</p><div class="game-people-tips"></div>
             </div>
         </div>
         <div class="card mycardseat"  data-seat="2">
             <img src="image/game/skillbtn.png" class="game-skillbtn">
-            <img src="image/cardback.png" class="game-fightcard">
+            <img src="image/cardback.png" class="game-fightcard" data-card="5">
             <div class="game-fightcard-information">
                 <p>名稱:</p>
                 <p>攻擊力:</p>
                 <div class="game-fightcard-blood-bg"></div>
                 <div class="game-fightcard-blood-deducted"></div>
                 <div class="game-fightcard-blood"></div>
-                <p class="game-fightcard-bloodnum">1000</p>
+                <p class="game-fightcard-bloodnum">1000</p><div class="game-people-tips"></div>
             </div>
         </div>
         <div class="card mycardseat"  data-seat="3">
             <img src="image/game/skillbtn.png" class="game-skillbtn">
-            <img src="image/cardback.png" class="game-fightcard">
+            <img src="image/cardback.png" class="game-fightcard" data-card="6">
             <div class="game-fightcard-information">
                 <p>名稱:</p>
                 <p>攻擊力:</p>
                 <div class="game-fightcard-blood-bg"></div>
                 <div class="game-fightcard-blood-deducted"></div>
                 <div class="game-fightcard-blood"></div>
-                <p class="game-fightcard-bloodnum">1000</p>
+                <p class="game-fightcard-bloodnum">1000</p><div class="game-people-tips"></div>
             </div>
         </div>
         <img src="image/cardback.png" class="game-nofightcard mycardseat">
@@ -90,6 +90,7 @@
     </body>
     <script src="card.json" type="text/javascript" charset="utf-8"></script>
     <script>
+        var gamePeopleTips=document.getElementsByClassName("game-people-tips");
         var roundtime=0;
         var mycardseat=document.getElementsByClassName("mycardseat");
         var enemycardseat=document.getElementsByClassName("enemycardseat");
@@ -136,6 +137,7 @@
                for(var i=3;i<6;i++){
                    if(skillbtn[i].getAttribute("src")=="image/game/skillbtnhover.png"){
                        skillbtn[i].setAttribute("src","image/game/skillbtn.png");
+                       skillbtn[i].classList.remove("game-fightcard-catch");
                        break;
                    }
                    if(fightcard[i].classList.contains("game-fightcard-catch")){
@@ -154,9 +156,11 @@
 
 
             skillbtn[i].addEventListener("click",function(){
+            if(this.getAttribute("src")!="image/game/skillbtn-no.png"){
                for(var i=3;i<6;i++){
                    if(skillbtn[i].getAttribute("src")=="image/game/skillbtnhover.png"){
                        skillbtn[i].setAttribute("src","image/game/skillbtn.png");
+                       skillbtn[i].classList.remove("game-fightcard-catch");
                        break;
                    }
                    if(fightcard[i].classList.contains("game-fightcard-catch")){
@@ -165,12 +169,14 @@
                    }
                }
                this.setAttribute("src","image/game/skillbtnhover.png");
+                this.classList.add("game-fightcard-catch");
                var teachtext=document.getElementsByClassName("game-teacher")[0];
                 console.log(teachtext.childNodes);
                 teachtext.childNodes[0].classList.remove("game-teachtext-now");
                 teachtext.childNodes[0].classList.add("game-teachtext-not");
                 teachtext.childNodes[1].classList.remove("game-teachtext-not");
                 teachtext.childNodes[1].classList.add("game-teachtext-now");
+            }
             });
         }
         
@@ -179,7 +185,7 @@
             if(this.getAttribute("src")!="image/cardback.png"){
                 var flagcatch=false;
                 for(var j=3;j<6;j++){
-                    if(fightcard[j].classList.contains("game-fightcard-catch")){
+                    if(fightcard[j].classList.contains("game-fightcard-catch")||fightcard[j].parentNode.childNodes[1].classList.contains("game-fightcard-catch")){
                         flagcatch=true;
                         break;
                     }
@@ -206,7 +212,7 @@
             p1.setAttribute("class","game-teachtext-now");
             document.getElementsByClassName("game-teacher")[0].appendChild(p1);
             var p2=document.createElement("p");
-            p2.innerHTML="2.選擇對方腳色";
+            p2.innerHTML="2.選擇對方或我方角色";
             p2.setAttribute("class","game-teachtext-not");
             document.getElementsByClassName("game-teacher")[0].appendChild(p2);
             var p3=document.createElement("p");
@@ -216,17 +222,185 @@
             
             document.getElementsByClassName("game-okbtn")[0].addEventListener("click",function(){
             if(this.classList.contains("game-okbtn-ready")){
-                console.log("come");
                 var enemy=document.getElementsByClassName("game-enemycard-catch")[0];
                 var mysoldier=document.getElementsByClassName("game-fightcard-catch")[0];
                 var hurt=document.createElement("div");
                 hurt.setAttribute("class","game-gethurt");
                 enemy.parentNode.appendChild(hurt);
                 
-                var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
-                var mysoldierattack=mysoldier.parentElement.childNodes[5].childNodes[3];
+                if(mysoldier.classList.contains("game-skillbtn")){
+                    /*直接寫技能*/
+                    if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:白起"){
+                        var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                        enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-1000;
+                        
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:王翦"){
+                        for(var i=2;i<5;i++){
+                            var blood=parseInt(enemycardseat[i].childNodes[5].childNodes[11].innerHTML);
+                            enemycardseat[i].childNodes[5].childNodes[11].innerHTML=blood-600;
+                        }
+                        var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                        enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-200;
+                        
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:秦穆公"){
+                        for(var i=0;i<5;i++){
+                            if("名稱:"+card[i]["name"]==enemy.parentNode.childNodes[5].childNodes[1].innerHTML){
+                                card[i]["attack"]=parseInt(card[i]["attack"])-100;
+                                break;
+                            }
+                        }
+                        var enemyattack=enemy.parentNode.childNodes[5].childNodes[3];
+                        enemyattack.innerHTML="攻擊力:"+(parseInt(enemyattack.innerHTML.substr(4,6))-100);
+                        
+                        for(var i=0;i<3;i++){
+                            var attack=parseInt(mycardseat[i].childNodes[5].childNodes[3].innerHTML.substr(4,6));
+                            if(!isNaN(attack)){
+                                mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                                card[localStorage.getItem(i+1)-1]["attack"]=parseInt(card[localStorage.getItem(i+1)-1]["attack"])+100;
+                            }
+                        }
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:張儀"){
+                       var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                    var enemyattack=parseInt(enemy.parentNode.childNodes[5].childNodes[3].innerHTML.substr(4,6));
+                       for(var i=2;i<5;i++){
+                        var attack=parseInt(enemycardseat[i].childNodes[5].childNodes[3].innerHTML.substr(4,6));
+                        if(!isNaN(attack)){
+                            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-attack;
+                        }
+                        
+                       }
+                        enemyblood.innerHTML=parseInt(enemyblood.innerHTML)+enemyattack;
+                       
+                       
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:秦緩"){
+                        var myblood=mysoldier.parentNode.childNodes[5].childNodes[11];
+                        myblood.innerHTML=parseInt(myblood.innerHTML)/2;
+                        var enemyattack=enemy.parentNode.childNodes[5].childNodes[3];
+                        enemyattack.innerHTML="攻擊力:000";
+                        for(var i=0;i<5;i++){
+                            if("名稱:"+card[i]["name"]==enemy.parentNode.childNodes[5].childNodes[1].innerHTML){
+                                card[i]["attack"]=0;
+                                break;
+                            }
+                        }
+                        
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:嬴政"){
+                        for(var i=0;i<3;i++){
+                            var blood=parseInt(mycardseat[i].childNodes[5].childNodes[11].innerHTML);
+                            if(isNaN(blood))
+                            mycardseat[i].childNodes[5].childNodes[11].innerHTML=blood+300;
+                            
+                            var attack=parseInt(mycardseat[i].childNodes[5].childNodes[3].innerHTML.substr(4,6));
+                            if(isNaN(attack)){
+                            mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                            for(var j=0;j<6;j++){
+                                if("名稱:"+card[j]["name"]==mycardseat[i].childNodes[5].childNodes[1].innerHTML){
+                                    card[j]["attack"]=parseInt(card[j]["attack"])+100;
+                                    break;
+                                }
+                            }
+                            }
+                        }
+                        var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                        enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-100;
+                        
+                    }
+                    /*換成楚國囉*/
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:伍子胥"){
+                        var myblood=mysoldier.parentNode.childNodes[5].childNodes[11];
+                        myblood.innerHTML=parseInt(myblood.innerHTML)*0.3;
+                        var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                        for(var j=0;j<6;j++){
+                            if("名稱:"+card[j]["name"]==enemy.parentNode.childNodes[5].childNodes[1].innerHTML){
+                                enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-(card[j]["HP"]*0.7);
+                                break;
+                            }
+                        }
+                        
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:黃歇"){
+                       for(var i=0;i<3;i++){
+                        var attack=parseInt(mycardseat[i].childNodes[5].childNodes[3].innerHTML.substr(4,6));
+                           if(isNaN(attack)){
+                            mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+200);
+                            for(var j=6;j<12;j++){
+                                if("名稱:"+card[j]["name"]==mycardseat[i].childNodes[5].childNodes[1].innerHTML){
+                                    card[j]["attack"]=parseInt(card[j]["attack"])+200;
+                                    break;
+                                }
+                            }
+                           }
+                       }
+                        var enemyattack=enemy.parentNode.childNodes[5].childNodes[3];
+                        var attack=parseInt(enemyattack.innerHTML.substr(4,6))-200;
+                        if(attack<0) attack=0;
+                        enemyattack.innerHTML="攻擊力:"+attack;
+                        
+                        for(var i=0;i<5;i++){
+                            if("名稱:"+card[i]["name"]==enemy.parentNode.childNodes[5].childNodes[1].innerHTML){
+                                var attack=parseInt(card[i]["attack"])-200;
+                                if(attack<0) attack=0;
+                                card[i]["attack"]=attack;
+                                break;
+                            }
+                        }
+                        
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:屈原"){
+                        for(var i=2;i<5;i++){
+                            var blood=parseInt(enemycardseat[i].childNodes[5].childNodes[11].innerHTML);
+                            if(!isNaN(blood))
+                            enemycardseat[i].childNodes[5].childNodes[11].innerHTML=blood-300;
+                        }
+                        var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                        enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-200;
+                        
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:吳起"){
+                        var rand=Math.random()*10;
+                        console.log(rand);
+                        if(rand>=5){
+                            var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                            enemyblood.innerHTML=0;
+                        }
+                        
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:養由基"){
+                        var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                    var attack=parseInt(mysoldier.parentNode.childNodes[5].childNodes[3].innerHTML.substr(4,6));
+                        enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-(attack*2);
+                    }
+                    else if(mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:孫叔敖"){
+                        var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                        enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-1000;
+                    }
+                    mysoldier.setAttribute("src","image/game/skillbtn-no.png");
+                }
+                else{
+                    var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
+                    var mysoldierattack=mysoldier.parentElement.childNodes[5].childNodes[3];
+
+                    enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+                    /*孫叔敖的被動技能，直接寫在裡面了*/
+                    if(mysoldierattack.parentNode.childNodes[1].innerHTML=="名稱:孫叔敖"){
+                        if(enemyblood.parentNode.childNodes[1].innerHTML=="名稱:秦穆公"){
+                            enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-(parseInt(mysoldierattack.innerHTML.substr(4,6))/2);  
+                        }
+                    }
+                    /*敵人張儀的被動技能，直接寫在裡面了*/
+                    if(enemyblood.parentNode.childNodes[1].innerHTML=="名稱:張儀"){
+                        var rand=Math.random()*10;
+                        if(rand<=2&&mysoldier.parentNode.childNodes[5].childNodes[1].innerHTML!="名稱:養由基"){
+    enemyblood.innerHTML=parseInt(enemyblood.innerHTML)+parseInt(mysoldierattack.innerHTML.substr(4,6));
+                        }
+                    }
+                }
                 
-                enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
                 
                 enemy.classList.remove("game-enemycard-catch");
                 mysoldier.classList.remove("game-fightcard-catch");
@@ -240,26 +414,28 @@
             document.getElementsByClassName("game-roundtime")[0].innerHTML="Round"+roundtime;
         }
         function enemyturn(){
+            enemypassiveskill();
             document.getElementsByClassName("game-teacher")[0].innerHTML="";
             var p=document.createElement("p");
             p.innerHTML="敵人<br>回合";
             p.setAttribute("class","game-enemyturn-now");
             document.getElementsByClassName("game-teacher")[0].appendChild(p);
-            
+            var enemyChoose;
             setTimeout(function(){
-                var enemy=parseInt(Math.random()*10)%3;
-                while(fightcard[enemy].getAttribute("src")=="image/cardback.png"){
-                    enemy=parseInt(Math.random()*10)%3;
+                enemyChoose=parseInt(Math.random()*10)%3;
+                while(fightcard[enemyChoose].getAttribute("src")=="image/cardback.png"){
+                    enemyChoose=parseInt(Math.random()*10)%3;
                 }
-                fightcard[enemy].classList.add("game-fightcard-catch");
+                fightcard[enemyChoose].classList.add("game-fightcard-catch");
             },500)
+            var mysoldierChoose;
             setTimeout(function(){
-                var mysoldier=parseInt(Math.random()*10)%3+3;
-                while(fightcard[mysoldier].getAttribute("src")=="image/cardback.png"){
-                    mysoldier=parseInt(Math.random()*10)%3+3;
+                mysoldierChoose=parseInt(Math.random()*10)%3+3;
+                while(fightcard[mysoldierChoose].getAttribute("src")=="image/cardback.png"){
+                    mysoldierChoose=parseInt(Math.random()*10)%3+3;
                 }
-                fightcard[mysoldier].classList.add("game-enemycard-catch");
-            },1500);
+                fightcard[mysoldierChoose].classList.add("game-enemycard-catch");
+            },2000);
             setTimeout(function(){
                 var enemy=document.getElementsByClassName("game-enemycard-catch")[0];
                 var mysoldier=document.getElementsByClassName("game-fightcard-catch")[0];
@@ -267,15 +443,16 @@
                 hurt.setAttribute("class","game-gethurt");
                 enemy.parentNode.appendChild(hurt);
                 
+                /*被攻擊的動作*/
                 var enemyblood=enemy.parentNode.childNodes[5].childNodes[11];
                 var mysoldierattack=mysoldier.parentElement.childNodes[5].childNodes[3];
-                
-                enemyblood.innerHTML=parseInt(enemyblood.innerHTML)-parseInt(mysoldierattack.innerHTML.substr(4,6));
+                card[localStorage.getItem(mysoldierChoose-2)-1]["attacked"](enemyblood,mysoldierattack);
+                /***********/
                 
                 enemy.classList.remove("game-enemycard-catch");
                 mysoldier.classList.remove("game-fightcard-catch");
             
-            },2000);
+            },2500);
             setTimeout(function(){
                 var gethurt=document.getElementsByClassName("game-gethurt");           
                 gethurt[0].parentNode.removeChild(gethurt[0]);
@@ -283,7 +460,7 @@
                 intro();
                 IsDead();
                 setpassiveskill();
-            },2500);
+            },3000);
         }
         
         function IsDead(){
@@ -291,6 +468,15 @@
             for(var i=2;i<5;i++){
                 var blood=enemycardseat[i].childNodes[5].childNodes[11].innerHTML;
                 if(blood<=0){
+                    /*秦緩的被動技能，直接寫在裡面了*/
+                    if(i==4&&enemycardseat[4].childNodes[5].childNodes[1].innerHTML=="名稱:秦緩"){
+                        var nowblood=parseInt(enemycardseat[3].childNodes[5].childNodes[11].innerHTML);
+                        enemycardseat[3].childNodes[5].childNodes[11].innerHTML=nowblood+200;
+                        nowblood=parseInt(enemycardseat[2].childNodes[5].childNodes[11].innerHTML);
+                        enemycardseat[2].childNodes[5].childNodes[11].innerHTML=nowblood+200;
+                    }
+                    /***************************/
+                    
                     for(var j=0;j<2;j++){
                         if(enemycardseat[j].getAttribute("src")!="image/cardback.png"){
                             var imgsrc=enemycardseat[j].getAttribute("src");
@@ -315,8 +501,12 @@
             }
             for(var i=0;i<3;i++){
                 var blood=mycardseat[i].childNodes[5].childNodes[11].innerHTML;
-                if(blood<=0){
-                    card[localStorage.getItem(i+1)-1]["dead"]();
+                if(blood<=0&&mycardseat[i].childNodes[5].childNodes[1].innerHTML!="名稱:"){
+                    if(localStorage.getItem("country")=="A")
+                        card[localStorage.getItem(i+1)-1]["dead"]();
+                    else if(localStorage.getItem("country")=="B"){
+                       card[localStorage.getItem(i+1)-1+6]["dead"]();
+                    }
                     for(var j=3;j<5;j++){
                         if(mycardseat[j].getAttribute("src")!="image/cardback.png"){
                             var imgsrc=mycardseat[j].getAttribute("src");
@@ -336,6 +526,10 @@
                             mycardseat[j].setAttribute("src","image/cardback.png");
                             localStorage.setItem(i+1,localStorage.getItem(j+1));
                             localStorage.setItem(j+1,0);
+                            
+                            /*skillbtn*/
+                            mycardseat[i].childNodes[1].setAttribute("src","image/game/skillbtn.png");
+                            
                             break;
                         }
                         if(j==4){
@@ -380,10 +574,103 @@
         function setpassiveskill(){
             for(var i=1;i<4;i++){
                 if(localStorage.getItem(i)!=0){
-                    card[localStorage.getItem(i)-1]["passiveSkill"][0](i-1);
+                    if(localStorage.getItem("country")=="A")
+                        card[localStorage.getItem(i)-1]["passiveSkill"][0](i-1);
+                    else if(localStorage.getItem("country")=="B"){
+                        card[localStorage.getItem(i)-1+6]["passiveSkill"][0](i-1);
+                    }
                 }
             }
+        }
+        enemypassiveskill();
+        function enemypassiveskill(){
+            /*先去判斷一些被動技能*/
+            /*1.秦穆公*/
+            if(enemycardseat[2].childNodes[5].childNodes[1].innerHTML=="名稱:秦穆公"){
+                if(enemycardseat[3].childNodes[5].childNodes[1].innerHTML=="名稱:張儀")
+                enemycardseat[3].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[3]["attack"])+100);
+                if(enemycardseat[4].childNodes[5].childNodes[1].innerHTML=="名稱:秦緩")
+                enemycardseat[4].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[4]["attack"])+100);
+            }
+            else{
+                if(enemycardseat[3].childNodes[5].childNodes[1].innerHTML=="名稱:張儀")
+                enemycardseat[3].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[3]["attack"]));
+                if(enemycardseat[4].childNodes[5].childNodes[1].innerHTML=="名稱:秦緩")
+                enemycardseat[4].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[4]["attack"]));
+            }
+            /*2.白起王翦*/
+            var flagfind=false;
+            for(var i=2;i<5;i++){
+                if(enemycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:白起"){
+                    for(var j=2;j<5;j++){
+                        if(enemycardseat[j].childNodes[5].childNodes[1].innerHTML=="名稱:王翦"){
+                            enemycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[0]["attack"])+100);
+                            enemycardseat[j].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[1]["attack"])+100);
+                            flagfind=true;
+                        }
+                    }
+                }
+            }
+            if(!flagfind){
+               for(var i=2;i<5;i++){
+                   if(enemycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:白起"){
+                      enemycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[0]["attack"])); 
+                   }
+                   if(enemycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:王翦"){
+                      enemycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(parseInt(card[1]["attack"])); 
+                   }
+               }
+            }
             
+        }
+        
+        //顯示出小小提示框
+        for(var i=0;i<6;i++){
+          fightcard[i].addEventListener("mouseover",function(){
+              var p=document.createElement("p");
+              gamePeopleTips[this.getAttribute("data-card")-1].innerHTML="";
+              if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:秦穆公"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->春秋五霸:存活時，我方文官攻擊力增加100<br><span style='color:yellow'>絕招</span>->富國強兵:發動後，我方其他角色攻擊力增加100，指定角色攻擊力下降100"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:白起"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->四大名將:當有此相同技能的腳色在場上，攻擊力提升100點<br><span style='color:yellow'>絕招</span>->屠滅百萬生靈:對單一敵人造成1000傷害"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:王翦"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->四大名將:當有此相同技能的腳色在場上，攻擊力提升100點<br><span style='color:yellow'>絕招</span>->六國之終結:對對方全體造成600點傷害，被指定的多200傷害"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:張儀"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->縱橫家:有20%機率免疫攻擊<br><span style='color:yellow'>絕招</span>->唇槍舌劍:讓敵方被指定角色受到其他角色的攻擊"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:秦緩"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->望聞問切:死亡時，幫我方角色回復200點血量<br><span style='color:yellow'>絕招</span>->起死回生:消耗目前50%生命，將一名腳色的攻擊減至0"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:嬴政"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->祖龍:場上有其他王者時，其他王者攻擊力降低100點<br><span style='color:yellow'>絕招</span>->不滅兵馬:我方全體角色增加300點血量和100點攻擊,造成指定角色100點傷害"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:伍子胥"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->復仇者:血量低於50%，攻擊力翻倍<br><span style='color:yellow'>絕招</span>->復仇怒火:扣除當前70%生命，對敵方單體造成最大生命70%傷害"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:黃歇"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->戰國四公子:場上文官攻擊力提升100點<br><span style='color:yellow'>絕招</span>->中興封君:我方全體攻擊力增加200點，指定角色減少200點攻擊力"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:屈原"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->端午:每回合回復自身10%最大血量<br><span style='color:yellow'>絕招</span>->國殤:對敵方全體造成300點傷害，並對指定角色造成500點傷害"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:吳起"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->吳子兵法:有40%機率免疫攻擊<br><span style='color:yellow'>絕招</span>->百戰不敗●伏屍千里:40%機率抹殺敵方一位指定角色"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:養由基"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->百發百中:無視對方技能迴避<br><span style='color:yellow'>絕招</span>->一箭驚天:對敵方單體造成200%自身當前攻擊力"
+              }
+              else if(this.parentNode.childNodes[5].childNodes[1].innerHTML=="名稱:孫叔敖"){
+                  p.innerHTML="<span style='color:yellow'>被動</span>->水神:對王者造成額外50%傷害<br><span style='color:yellow'>絕招</span>->殺蛇雙首:對敵方角色造成1000點攻擊"
+              }
+              else{
+                  p.innerHTML="<span style='color:yellow;font-size:30px;'>角色已死亡</span>" 
+              }
+              
+              gamePeopleTips[this.getAttribute("data-card")-1].appendChild(p); 
+          })
         }
         
     </script>

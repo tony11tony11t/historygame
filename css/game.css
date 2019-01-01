@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: "微軟正黑體"
 }
 body{
     background-image: url("../image/game/fightbg.png");
@@ -15,6 +16,24 @@ body{
 .game-fightcard{
     width: 8vw;
     cursor: pointer;
+}
+.game-fightcard:hover+div>div:nth-last-child(1){
+    display: block;
+    font-size: 15px;
+    width: 20vw;
+    height:30vh;
+    background-color: rgba(0,0,0);
+    border-radius: 10px;
+    position: absolute;
+    bottom:0px;
+    z-index: 100;
+    
+}
+.game-fightcard+div>div:nth-last-child(1){
+    display: none;
+}
+.game-fightcard+div>div:nth-last-child(1)>p{
+    padding: 15px;
 }
 .game-fightcard-catch{
     border: 5px solid red;
