@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/result.css">
+    </head>
+    <body>
+        <img src="image/win.png" class="game-result">
+        <a href="startgame.html"><p class="game-resultbtn result-btn-again">再來一局</p></a>
+        <a href="index.html"><p class="game-resultbtn result-btn-index">回首頁</p></a>
+    </body>
+    <script>
+        var result=localStorage.getItem("result");
+        if(result=="lose"){
+            document.getElementsByClassName("game-result")[0].setAttribute("src","image/lose.png")
+        }
+    </script>
+</html>

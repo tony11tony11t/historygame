@@ -8,19 +8,22 @@ var card=[
             enemy.HP-=1000;
         },
         "passiveSkill":[
-            function(parner){
-                if(parner.name=="王翦"){
-                    attack+=100;
+            function(seat){
+                var attack=parseInt(card[0]["attack"]);
+                for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:王翦"){
+                        mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                       return;
+                    }
                 }
+                mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+attack;
             },
             function(){
-                if(dead==true){
-                    HP+=(HP*3/10);
-                }
             }
         ],
         "type":"武將",
-        "img":"image/game/A/1.png"
+        "img":"image/game/A/1.png",
+        "dead":function(){}
     },
     {
         "name":"王翦",
@@ -29,50 +32,91 @@ var card=[
         "attack":600,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+             function(seat){
+                var attack=parseInt(card[1]["attack"]);
+                for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:白起"){
+                        mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                        return;
+                    }
+                }
+                 mycardseat[seat].childNodes[5].childNodes[3].innerHTML="攻擊力:"+attack;
+            },
             function(){}
         ],
         "type":"武將",
-        "img":"image/game/A/2.png"
+        "img":"image/game/A/2.png",
+        "dead":function(){}
     },
     {
         "name":"秦穆公",
         "country":"秦",
         "HP":3000,
-        "attack":300,
+        "attack":3000,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(){
+                for(var i=0;i<3;i++){
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:張儀"){
+                        var attack=parseInt(card[3]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                    }
+                    if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:秦緩"){
+                        var attack=parseInt(card[4]["attack"]);
+                        mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack+100);
+                    }
+                }
+            },
             function(){}
         ],
         "type":"王者",
-        "img":"image/game/A/3.png"
+        "img":"image/game/A/3.png",
+        "dead":function(){
+            for(var i=0;i<3;i++){
+                if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:張儀"){
+                    var attack=parseInt(card[3]["attack"]);
+                    mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                }
+                if(mycardseat[i].childNodes[5].childNodes[1].innerHTML=="名稱:秦緩"){
+                    var attack=parseInt(card[4]["attack"]);
+                    mycardseat[i].childNodes[5].childNodes[3].innerHTML="攻擊力:"+(attack);
+                }
+            }
+        }
     },
     {
         "name":"張儀",
         "country":"秦",
         "HP":1000,
-        "attack":300,
+        "attack":3000,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(seat){
+               
+            },
             function(){}
         ],
         "type":"文官",
-        "img":"image/game/A/4.png"
+        "img":"image/game/A/4.png",
+        "dead":function(){}
     },
     {
         "name":"秦緩",
         "country":"秦",
         "HP":1800,
-        "attack":200,
+        "attack":2000,
         "attackSkill":function(){},
         "passiveSkill":[
-            function(){},
+            function(seat){
+                
+                
+                
+            },
             function(){}
         ],
         "type":"文官",
-        "img":"image/game/A/5.png"
+        "img":"image/game/A/5.png",
+        "dead":function(){}
     },
     {
         "name":"嬴政",
@@ -85,7 +129,8 @@ var card=[
             function(){}
         ],
         "type":"王者",
-        "img":"image/game/A/6.png"
+        "img":"image/game/A/6.png",
+        "dead":function(){}
     },
     {
         "name":"伍子胥",
@@ -98,7 +143,8 @@ var card=[
             function(){}
         ],
         "type":"武將",
-        "img":"image/game/B/1.png"
+        "img":"image/game/B/1.png",
+        "dead":function(){}
     },
     {
         "name":"黃歇",
@@ -111,7 +157,8 @@ var card=[
             function(){}
         ],
         "type":"文官",
-        "img":"image/game/B/2.png"
+        "img":"image/game/B/2.png",
+        "dead":function(){}
     },
     {
         "name":"屈原",
@@ -124,7 +171,8 @@ var card=[
             function(){}
         ],
         "type":"文官",
-        "img":"image/game/B/3.png"
+        "img":"image/game/B/3.png",
+        "dead":function(){}
     },
     {
         "name":"吳起",
@@ -137,7 +185,8 @@ var card=[
             function(){}
         ],
         "type":"武將",
-        "img":"image/game/B/4.png"
+        "img":"image/game/B/4.png",
+        "dead":function(){}
     },
     {
         "name":"養由基",
@@ -150,7 +199,8 @@ var card=[
             function(){}
         ],
         "type":"武將",
-        "img":"image/game/B/5.png"
+        "img":"image/game/B/5.png",
+        "dead":function(){}
     },
     {
         "name":"孫叔敖",
@@ -163,7 +213,8 @@ var card=[
             function(){}
         ],
         "type":"文官",
-        "img":"image/game/B/6.png"
+        "img":"image/game/B/6.png",
+        "dead":function(){}
     },
     
     

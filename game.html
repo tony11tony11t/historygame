@@ -101,9 +101,9 @@
             mycardseat[i-1].childNodes[3].setAttribute("src","image/game/"+country+"/"+role+".png");
             var mycardinformation=mycardseat[i-1].childNodes[5];
             if(country=="A"){
-                mycardinformation.childNodes[1].innerHTML="名稱:"+card[6+parseInt(role)-1]["name"];
-                mycardinformation.childNodes[3].innerHTML="攻擊力:"+card[6+parseInt(role)-1]["attack"];
-                mycardinformation.childNodes[11].innerHTML=card[6+parseInt(role)-1]["HP"];
+                mycardinformation.childNodes[1].innerHTML="名稱:"+card[parseInt(role)-1]["name"];
+                mycardinformation.childNodes[3].innerHTML="攻擊力:"+card[parseInt(role)-1]["attack"];
+                mycardinformation.childNodes[11].innerHTML=card[parseInt(role)-1]["HP"];
             }
             else if(country=="B"){
                 mycardinformation.childNodes[1].innerHTML="名稱:"+card[6+parseInt(role)-1]["name"];
@@ -132,6 +132,7 @@
         
         for(var i=3;i<6;i++){
             fightcard[i].addEventListener("click",function(){
+            if(this.getAttribute("src")!="image/cardback.png"){
                for(var i=3;i<6;i++){
                    if(skillbtn[i].getAttribute("src")=="image/game/skillbtnhover.png"){
                        skillbtn[i].setAttribute("src","image/game/skillbtn.png");
@@ -149,9 +150,9 @@
                 teachtext.childNodes[0].classList.add("game-teachtext-not");
                 teachtext.childNodes[1].classList.remove("game-teachtext-not");
                 teachtext.childNodes[1].classList.add("game-teachtext-now");
-            });
-            
-            
+            }});
+
+
             skillbtn[i].addEventListener("click",function(){
                for(var i=3;i<6;i++){
                    if(skillbtn[i].getAttribute("src")=="image/game/skillbtnhover.png"){
@@ -175,6 +176,7 @@
         
         for(var i=0;i<3;i++){
             fightcard[i].addEventListener("click",function(){
+            if(this.getAttribute("src")!="image/cardback.png"){
                 var flagcatch=false;
                 for(var j=3;j<6;j++){
                     if(fightcard[j].classList.contains("game-fightcard-catch")){
@@ -193,10 +195,8 @@
                     var teachtext=document.getElementsByClassName("game-teacher")[0];
                     teachtext.childNodes[1].classList.remove("game-teachtext-now");
                     teachtext.childNodes[1].classList.add("game-teachtext-not");
-                    
                 }
-                
-            })
+            }});
         }
     
         function intro(){
@@ -230,7 +230,9 @@
                 
                 enemy.classList.remove("game-enemycard-catch");
                 mysoldier.classList.remove("game-fightcard-catch");
+                setTimeout(IsDead,1000);
                 setTimeout(enemyturn,1000);
+                
                 
             }
         });
@@ -245,14 +247,18 @@
             document.getElementsByClassName("game-teacher")[0].appendChild(p);
             
             setTimeout(function(){
-                var enemy=parseInt(Math.random()*10);
-                console.log(enemy%3);
-                fightcard[enemy%3].classList.add("game-fightcard-catch");
+                var enemy=parseInt(Math.random()*10)%3;
+                while(fightcard[enemy].getAttribute("src")=="image/cardback.png"){
+                    enemy=parseInt(Math.random()*10)%3;
+                }
+                fightcard[enemy].classList.add("game-fightcard-catch");
             },500)
             setTimeout(function(){
-                var mysoldier=parseInt(Math.random()*10);
-                console.log(mysoldier%3+3);
-                fightcard[mysoldier%3+3].classList.add("game-enemycard-catch");
+                var mysoldier=parseInt(Math.random()*10)%3+3;
+                while(fightcard[mysoldier].getAttribute("src")=="image/cardback.png"){
+                    mysoldier=parseInt(Math.random()*10)%3+3;
+                }
+                fightcard[mysoldier].classList.add("game-enemycard-catch");
             },1500);
             setTimeout(function(){
                 var enemy=document.getElementsByClassName("game-enemycard-catch")[0];
@@ -275,7 +281,109 @@
                 gethurt[0].parentNode.removeChild(gethurt[0]);
                 gethurt[0].parentNode.removeChild(gethurt[0]);
                 intro();
+                IsDead();
+                setpassiveskill();
             },2500);
+        }
+        
+        function IsDead(){
+            
+            for(var i=2;i<5;i++){
+                var blood=enemycardseat[i].childNodes[5].childNodes[11].innerHTML;
+                if(blood<=0){
+                    for(var j=0;j<2;j++){
+                        if(enemycardseat[j].getAttribute("src")!="image/cardback.png"){
+                            var imgsrc=enemycardseat[j].getAttribute("src");
+                            enemycardseat[i].childNodes[3].setAttribute("src",imgsrc);
+                            var enemycardinformation=enemycardseat[i].childNodes[5];
+                            enemycardinformation.childNodes[1].innerHTML="名稱:"+card[j]["name"];
+                            enemycardinformation.childNodes[3].innerHTML="攻擊力:"+card[j]["attack"];
+                            enemycardinformation.childNodes[11].innerHTML=card[j]["HP"];
+                            enemycardseat[j].setAttribute("src","image/cardback.png");
+                            break;
+                        }
+                        if(j==1){
+                            enemycardseat[i].childNodes[3].setAttribute("src","image/cardback.png");
+                            var enemycardinformation=enemycardseat[i].childNodes[5];
+                            enemycardinformation.childNodes[1].innerHTML="名稱:";
+                            enemycardinformation.childNodes[3].innerHTML="攻擊力:";
+                            enemycardinformation.childNodes[11].innerHTML=0;
+                            
+                        }
+                    }
+                }
+            }
+            for(var i=0;i<3;i++){
+                var blood=mycardseat[i].childNodes[5].childNodes[11].innerHTML;
+                if(blood<=0){
+                    card[localStorage.getItem(i+1)-1]["dead"]();
+                    for(var j=3;j<5;j++){
+                        if(mycardseat[j].getAttribute("src")!="image/cardback.png"){
+                            var imgsrc=mycardseat[j].getAttribute("src");
+                            mycardseat[i].childNodes[3].setAttribute("src",imgsrc);
+                            var mycardinformation=mycardseat[i].childNodes[5];
+                            var role=localStorage.getItem(j+1);
+                            if(country=="A"){
+                                mycardinformation.childNodes[1].innerHTML="名稱:"+card[parseInt(role)-1]["name"];
+                                mycardinformation.childNodes[3].innerHTML="攻擊力:"+card[parseInt(role)-1]["attack"];
+                                mycardinformation.childNodes[11].innerHTML=card[parseInt(role)-1]["HP"];
+                            }
+                            else if(country=="B"){
+                                mycardinformation.childNodes[1].innerHTML="名稱:"+card[6+parseInt(role)-1]["name"];
+                                mycardinformation.childNodes[3].innerHTML="攻擊力:"+card[6+parseInt(role)-1]["attack"];
+                                mycardinformation.childNodes[11].innerHTML=card[6+parseInt(role)-1]["HP"];
+                            }
+                            mycardseat[j].setAttribute("src","image/cardback.png");
+                            localStorage.setItem(i+1,localStorage.getItem(j+1));
+                            localStorage.setItem(j+1,0);
+                            break;
+                        }
+                        if(j==4){
+                            mycardseat[i].childNodes[3].setAttribute("src","image/cardback.png");
+                            var mycardinformation=mycardseat[i].childNodes[5];
+                            mycardinformation.childNodes[1].innerHTML="名稱:";
+                            mycardinformation.childNodes[3].innerHTML="攻擊力:";
+                            mycardinformation.childNodes[11].innerHTML=0;
+                            localStorage.setItem(i+1,0);
+                        }
+                    }
+                }
+            }
+            setTimeout(gameover,1000);
+        }
+        function gameover(){
+            var flagwin=true;
+            var flaglose=true;
+            for(var i=0;i<3;i++){
+                if(fightcard[i].getAttribute("src")!="image/cardback.png"){
+                    flagwin=false;
+                }
+            }
+            if(flagwin){
+                localStorage.setItem("result","win");
+                location.href="result.html";
+            }
+            
+            for(var i=3;i<6;i++){
+                if(fightcard[i].getAttribute("src")!="image/cardback.png"){
+                    flaglose=false;
+                }
+            }
+            if(flaglose){
+                localStorage.setItem("result","lose");
+                location.href="result.html";
+            }
+            
+        }
+        
+        setpassiveskill();
+        function setpassiveskill(){
+            for(var i=1;i<4;i++){
+                if(localStorage.getItem(i)!=0){
+                    card[localStorage.getItem(i)-1]["passiveSkill"][0](i-1);
+                }
+            }
+            
         }
         
     </script>
