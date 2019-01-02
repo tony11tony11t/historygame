@@ -74,9 +74,50 @@ img[alt="G"]{
 }
 .gamerole-roleclo{
     position: relative;
-    left:25%;
+    left:10%;
 }
 .gamerole-roleclo>img{
     margin-top: 15vh;
+    margin-left: 12vw;
     width: 20vw;
+}
+.gamerole-choose>img{
+    width:5vw;
+    margin: 0.5vw;
+    cursor: pointer;
+    
+}
+.gamerole-choose>img:hover{
+    border: solid 2px white;
+    box-sizing: border-box;
+}
+.gamerole-choose{
+    width: 50vw;
+    text-align: center;
+}
+.gamerole-introtext{
+    width: 40vw;
+    margin-right: 5vw;
+    margin-left: 5vw;
+    border: solid white 2px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 10px;
+}
+.gamerole-introtext>img{
+    margin: 5%;
+    width:35%;
+    display: inline-block;
+}
+.gamerole-introtext>p{
+    width: 45%;
+    color: white;
+    font-size: 18px;
+    margin-top: 5%;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 2%;
+}
+.gamerole-nosee{
+    display: none;
 }

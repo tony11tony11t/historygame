@@ -47,17 +47,119 @@
         </div>
         <div class="gamerole-roleclo">
         <img src="image/roletips.png">
+            <div class="gamerole-introdiv gamerole-nosee">
+                <div class="gamerole-choose">
+                    <img src="image/game/A/1.png" alt="1" data-country="A">
+                    <img src="image/game/A/2.png" alt="2" data-country="A">
+                    <img src="image/game/A/3.png" alt="3" data-country="A">
+                    <img src="image/game/A/4.png" alt="4" data-country="A">
+                    <img src="image/game/A/5.png" alt="5" data-country="A">
+                    <img src="image/game/A/6.png" alt="6" data-country="A">
+                </div>
+                <div class="gamerole-introtext">
+                    <img src="image/game/A/1.png">
+                    <p></p>
+
+                </div>
+            </div>
         </div>
         
         <footer><p><small>卡牌戰國版權所有&copy;2018 建議解析度:1920X1080</small></p></footer>
         <script>
            var realmap=document.getElementsByClassName("gamerole-realmap");
+           var gameroleRoleclo=document.getElementsByClassName("gamerole-roleclo")[0];
+           var gameroleChoose=document.getElementsByClassName("gamerole-choose")[0];
             for(var i=0;i<realmap.length;i++){
                 realmap[i].addEventListener("click",function(){
+                    gameroleRoleclo.childNodes[1].classList.add("gamerole-nosee");
+                    gameroleRoleclo.childNodes[3].classList.remove("gamerole-nosee");
                     for(var i=0;i<realmap.length;i++){
                       realmap[i].classList.remove("map-visible");
                     }
                     this.classList.add("map-visible");
+                    
+                    if(this.getAttribute("alt")=="A"){
+                        gameroleChoose.childNodes[1].setAttribute("src","image/game/A/1.png");
+                        gameroleChoose.childNodes[3].setAttribute("src","image/game/A/2.png");
+                        gameroleChoose.childNodes[5].setAttribute("src","image/game/A/3.png");
+                        gameroleChoose.childNodes[7].setAttribute("src","image/game/A/4.png");
+                        gameroleChoose.childNodes[9].setAttribute("src","image/game/A/5.png");
+                        gameroleChoose.childNodes[11].setAttribute("src","image/game/A/6.png");
+                        for(var i=1;i<12;i+=2){
+                            gameroleChoose.childNodes[i].setAttribute("data-country","A");
+                        }
+                        var gameroleIntrotext=document.getElementsByClassName("gamerole-introtext")[0].childNodes;
+                        gameroleIntrotext[1].setAttribute("src","image/game/A/1.png");
+                        gameroleIntrotext[3].innerHTML="白起（前332年？－前257年），《戰國策》作公孫起， 郿縣（今陝西省眉縣常興鎮白家村）人，中國戰國時代軍事家、秦國名將，兵家代表人物。<br/>白起擔任秦國將領30多年，攻城70餘座，殲滅近百萬敵軍，未嘗一敗，被封為武安君。白起一生有伊闕之戰、鄢郢之戰、華陽之戰、陘城之戰和長平之戰等輝煌勝利，《千字文》將白起與王翦、廉頗和李牧並稱為戰國四名將。";
+                    }
+                    else if(this.getAttribute("alt")=="B"){
+                        gameroleChoose.childNodes[1].setAttribute("src","image/game/B/1.png");
+                        gameroleChoose.childNodes[3].setAttribute("src","image/game/B/2.png");
+                        gameroleChoose.childNodes[5].setAttribute("src","image/game/B/3.png");
+                        gameroleChoose.childNodes[7].setAttribute("src","image/game/B/4.png");
+                        gameroleChoose.childNodes[9].setAttribute("src","image/game/B/5.png");
+                        gameroleChoose.childNodes[11].setAttribute("src","image/game/B/6.png");
+                        for(var i=1;i<12;i+=2){
+                            gameroleChoose.childNodes[i].setAttribute("data-country","B");
+                        }
+                        var gameroleIntrotext=document.getElementsByClassName("gamerole-introtext")[0].childNodes;
+                        gameroleIntrotext[1].setAttribute("src","image/game/B/1.png");
+                        gameroleIntrotext[3].innerHTML="伍子胥（前6世紀－前484年），名員，字子胥，以字行。春秋時期楚國椒邑（今湖北省監利縣黃歇口鎮伍楊村）人，後來吳國封他於申，因此又叫申胥。伍子胥先祖伍舉，以正直進諫楚莊王而得名聲，因此其後代於楚國亦有名聲。伍子胥家族因在楚國被迫害，投奔吳國。受吳王闔閭重用，大破楚國，北鎮齊晉，南服越人，官拜相國公。吳王夫差繼位後，對其「聯齊抗越」戰略不滿，又聽信伯否的讒言，最終賜死伍子胥。";
+                    }
+                    else{
+                        gameroleChoose.childNodes[1].setAttribute("src","image/cardback.png");
+                        gameroleChoose.childNodes[3].setAttribute("src","image/cardback.png");
+                        gameroleChoose.childNodes[5].setAttribute("src","image/cardback.png");
+                        gameroleChoose.childNodes[7].setAttribute("src","image/cardback.png");
+                        gameroleChoose.childNodes[9].setAttribute("src","image/cardback.png");
+                        gameroleChoose.childNodes[11].setAttribute("src","image/cardback.png");
+                        for(var i=1;i<12;i+=2){
+                            gameroleChoose.childNodes[i].setAttribute("data-country","NO");
+                        }
+                         var gameroleIntrotext=document.getElementsByClassName("gamerole-introtext")[0].childNodes;
+                        gameroleIntrotext[1].setAttribute("src","image/cardback.png");
+                        gameroleIntrotext[3].innerHTML="coming soon";
+                    }
+                    
+                })
+            }
+            for(var i=1;i<12;i+=2){
+                gameroleChoose.childNodes[i].addEventListener("click",function(){
+                    var gameroleIntrotext=document.getElementsByClassName("gamerole-introtext")[0].childNodes;
+                        gameroleIntrotext[1].setAttribute("src","image/game/"+this.getAttribute("data-country")+"/"+this.getAttribute("alt")+".png");
+                    if(this.getAttribute("data-country")=="A")
+                    switch(this.getAttribute("alt")){
+                        case "1":
+                            gameroleIntrotext[3].innerHTML="白起（前332年？－前257年），《戰國策》作公孫起， 郿縣（今陝西省眉縣常興鎮白家村）人，中國戰國時代軍事家、秦國名將，兵家代表人物。<br/>白起擔任秦國將領30多年，攻城70餘座，殲滅近百萬敵軍，未嘗一敗，被封為武安君。白起一生有伊闕之戰、鄢郢之戰、華陽之戰、陘城之戰和長平之戰等輝煌勝利，《千字文》將白起與王翦、廉頗和李牧並稱為戰國四名將。";break;
+                        case "2":
+                            gameroleIntrotext[3].innerHTML="王翦（？－？），戰國時期秦國名將，關中頻陽東鄉（今陝西富平東北）人，主要戰績：破趙國都城邯鄲，消滅燕和趙；以秦國絕大部分兵力消滅楚國後，接著率領平楚大軍南下平定百越。與白起、廉頗、李牧並稱戰國四大名將。其曾孫是琅琊王氏和太原王氏的始祖。";break;
+                        case "3":
+                            gameroleIntrotext[3].innerHTML="秦穆公（前659年－前621年），部份記載中被稱為秦繆公，春秋時代秦國國君，嬴姓，名任好。在位三十九年（前659年－前621年），諡號穆，在《史記》中被認定為春秋五霸之一。<br/>秦穆公非常重視人才，其任內獲得了百里奚、蹇叔、丕豹及公孫枝等賢臣的輔佐，曾協助晉文公回到晉國奪取王位。周襄王時出兵攻打蜀國和其他位於函谷關以西的國家，開地千里，因而周襄王任命他為為西方諸侯之伯，遂稱霸西戎，為四百年後秦統一中國奠定了基礎。";break;
+                        case "4":
+                            gameroleIntrotext[3].innerHTML="張儀（前373年-前310年），魏國安邑（今山西夏縣）人，戰國時期著名的縱橫家。提倡連橫，即秦國聯合其他諸侯國中的幾個，然後對抗其他的諸侯國，多次破壞了六國的合縱，為秦惠文王重用，卒於魏國。";break;
+                        case "5":
+                            gameroleIntrotext[3].innerHTML="扁鵲，原姓秦，名越人，一名緩，號盧醫、扁鵲，中國春秋時代醫師。生於周安王元年（公元前401年）前後，卒於周赧王五年（公元前310年）。傳說中東周戰國時期姜齊勃海郡莫州（今河北省任丘市鄚州鎮）人。與華佗、張仲景、李時珍並稱中國古代四大名醫。";break;
+                        case "6":
+                            gameroleIntrotext[3].innerHTML="秦始皇（前259年－前210年8月10日），嬴姓，趙氏，名政，時稱趙政，史書多作秦王政或始皇帝，生於趙國首都邯鄲（今河北邯鄲市），是秦莊襄王之子，商朝重臣惡來的第35世孫。出土《北京大學藏西漢竹書》第三卷中稱其為趙正。唐代司馬貞在《史記索隱》引述《世本》稱其為趙政。曹植《文帝誄》最早稱始皇帝為嬴政，後世通稱嬴政，亦被某些文學作品稱為「祖龍」。他是戰國末期秦國君主，十三歲即位，先後鏟除嫪毐與呂不韋，並重用李斯、尉繚，三十九歲時滅亡六國建立秦朝，自稱「始皇帝」，五十歲出巡時駕崩，在位三十七年。";break;
+                    }
+                    else if(this.getAttribute("data-country")=="B")
+                    switch(this.getAttribute("alt")){
+                        case "1":
+                            gameroleIntrotext[3].innerHTML="伍子胥（前6世紀－前484年），名員，字子胥，以字行。春秋時期楚國椒邑（今湖北省監利縣黃歇口鎮伍楊村）人，後來吳國封他於申，因此又叫申胥。伍子胥先祖伍舉，以正直進諫楚莊王而得名聲，因此其後代於楚國亦有名聲。伍子胥家族因在楚國被迫害，投奔吳國。受吳王闔閭重用，大破楚國，北鎮齊晉，南服越人，官拜相國公。吳王夫差繼位後，對其「聯齊抗越」戰略不滿，又聽信伯否的讒言，最終賜死伍子胥。";break;
+                        case "2":
+                            gameroleIntrotext[3].innerHTML="春申君（？－前238年），名黃歇，中國戰國時代楚國人（今河南省潢川人）。楚考烈王時期官至楚國令尹，是戰國時代著名的政治家，和平原君趙勝、孟嘗君田文、信陵君魏無忌合稱為「戰國四公子」。";break;
+                        case "3":
+                            gameroleIntrotext[3].innerHTML="屈原（約前343年－約前278年6月6日），羋姓，屈氏，名平，字原，楚國人（今湖北秭歸），自稱是古帝高陽氏的後裔，其先祖屈瑕受楚武王封於屈地，因以屈為氏，名平，官拜左徒，為楚王近臣";break;
+                        case "4":
+                            gameroleIntrotext[3].innerHTML="吳起（前440年－前381年），中國戰國初期軍事家、政治家、改革家，兵家代表人物。衞國左氏（今山東省定陶縣，一說山東省曹縣東北）人。<br/>吳起歷侍魯、魏、楚三國，通曉兵家、法家、儒家三家思想，在內政、軍事上都有極高的成就。仕魯時曾擊退齊國的入侵；仕魏時屢次破秦，盡取秦國的河西地區（今山西、陝西兩省間黃河南段以西地區），成就魏文侯的霸業；仕楚時主持改革，史稱吳起變法。但吳起的變法損害了楚國貴族的利益，他本人也遭到了舊勢力的報復。前381年，楚悼王去世後，楚國貴族發動兵變殺害吳起。";break;
+                        case "5":
+                            gameroleIntrotext[3].innerHTML="養由基（－前559年），嬴姓，養氏，字叔，名由基（一作繇基），春秋時期楚國將領，是中國古代著名的神射手。養由基本是養國人，養國被楚國滅亡後，養由基成為楚國大夫。相傳養由基能在百步之外射穿作標記的柳葉，並曾一箭射穿七層鎧甲。《戰國策·西周策》中記載：「楚有養由基者，善射，去柳葉百步而射之，百發百中。」成語「百發百中」、「百步穿楊」都出於此處。此人號「養一箭」，一箭就足以致勝。";break;
+                        case "6":
+                            gameroleIntrotext[3].innerHTML="孫叔敖，又稱蒍敖、蒍艾獵或蒍饒，羋姓，蔿氏，名敖，字孫叔，春秋時期楚國名相，於水利兵法均有極大貢獻。<br/>孫叔敖因為其子孫安封於「孫丘」（即「寢丘」），故稱「孫叔」，先秦人習慣將字放在名之前，故楚國人通稱「孫叔敖」";break;
+                    }
+                    else{
+                        gameroleIntrotext[1].setAttribute("src","image/cardback.png");
+                    }
                 })
             }
         </script>

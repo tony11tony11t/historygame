@@ -1,3 +1,8 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "微軟正黑體";
+}
 #introbg-bg{
     width: 100vw;
     top:0vh;
